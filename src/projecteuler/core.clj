@@ -232,6 +232,26 @@
   (let [n (or n 500)]
     (first (drop-while #(< (factorize-count %) n) (triangular-numbers)))))
 
+;; https://projecteuler.net/problem=13
+(defn large-sum [& [source]]
+  (let [source  (or source "013.txt")
+        numbers (slurp source)]
+    (read-string
+     (apply str
+            (take 10
+                  (str (apply + (map bigint (re-seq #"\d+" numbers)))))))))
+
+;; https://projecteuler.net/problem=14
+(defn- collatz-next [n]
+  (if (even? n) (/ n 2) (inc (* n 3))))
+(defn- collatz-chain-recursive [n]
+  (if (= n 1) 1
+      (inc (collatz-chain-recursive (collatz-next n)))))
+(defn longest-collatz-sequence [& [maximum]]
+  (let [maximum (or maximum 1000000)]
+    (first (apply max-key second
+                  (map #(list % (collatz-chain-recursive %))
+                       (range 1 maximum))))))
 
 ;; https://projecteuler.net/problem=16
 (defn power-digit-sum [& [x n]]
