@@ -114,7 +114,7 @@
           value (reduce * (map num-map n-seq))
           acc   (max acc value)]
       (cond
-       (<= n (count n-seq) n) (recur (rest s) n acc)
+       (<= n (count n-seq)) (recur (rest s) n acc)
        true                   acc))))
 (defn largest-series-product [& [digits n]]
   (let [digits (or digits target-number)
@@ -221,12 +221,12 @@
   ((fn triangular [n acc]
      (let [val (+ n acc)]
        (cons val (lazy-seq (triangular (inc n) val))))) 1 0))
-(defn factorize [n]
+(defn- factorize [n]
   (loop [x n [p & ps] primes factors []]
     (cond (= 1 x) factors
           (zero? (mod x p)) (recur (/ x p) primes (conj factors p))
           :else (recur x ps factors))))
-(defn factorize-count [n]
+(defn- factorize-count [n]
   (reduce * (map (comp inc count) (vals (group-by identity (factorize n))))))
 (defn highly-divisible-triangular-number [& [n]]
   (let [n (or n 500)]
@@ -234,7 +234,7 @@
 
 ;; https://projecteuler.net/problem=13
 (defn large-sum [& [source]]
-  (let [source  (or source "013.txt")
+  (let [source  (or source "data/013.txt")
         numbers (slurp source)]
     (read-string
      (apply str
@@ -265,3 +265,56 @@
   (let [x (or x 2)
         n (or n 1000)]
    (reduce + (map num-map (.toString (.pow (BigInteger. (str x)) n))))))
+
+;; https://projecteuler.net/problem=17
+
+;; https://projecteuler.net/problem=18
+(defn- triangle [file]
+  (map #(Integer/parseInt %) (re-seq #"\d\d" (slurp file))))
+(defn- triangle-tree [s]
+  (loop [n    1
+         s    s
+         tree nil]
+    (cond
+     (empty? s) tree
+     true (recur (inc n) (drop n s) (cons (take n s) tree)))))
+(defn- reduce-row [s]
+  (map #(reduce max %) (partition 2 1 s)))
+(defn- combine-rows [s1 s2]
+  (map + (reduce-row s1) s2))
+(defn maximum-path-sum [& [file]]
+  (let [file (or file "data/018.txt")
+        data (triangle file)
+        tree (triangle-tree data)]
+    (first (reduce combine-rows tree))))
+
+;; https://projecteuler.net/problem=19
+
+;; https://projecteuler.net/problem=20
+(defn- ! [n] (reduce *' (range 1 (inc n))))
+(defn factorial-digit-sum [& [n]]
+  (let [n (or n 100)
+        v (! n)
+        s (str v)]
+    (reduce + (map num-map s))))
+
+;; https://projecteuler.net/problem=21
+
+;; https://projecteuler.net/problem=22
+(def uc-map
+  (apply hash-map (flatten (map #(list (char (+ % 64)) %) (range 1 27)))))
+(defn names-scores [& [file]]
+  (let [file  (or file "data/022.txt")
+        data  (slurp file)
+        names (sort (re-seq #"[A-Z]+" data))]
+    (reduce + (map-indexed #(* (inc %1) (apply + (map uc-map %2))) names))))
+
+;; https://projecteuler.net/problem=23
+
+;; https://projecteuler.net/problem=24
+
+;; https://projecteuler.net/problem=25
+
+;; https://projecteuler.net/problem=67
+(defn maximum-path-sum-2 []
+  (maximum-path-sum "data/067.txt"))
