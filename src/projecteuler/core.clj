@@ -42,7 +42,7 @@
 
 ;; https://projecteuler.net/problem=4
 (defn- is-palindrome-num? [x]
-  (let [x-str (.toString x)
+  (let [x-str (str x)
         x-seq (seq x-str)]
     (= x-seq (reverse x-seq))))
 (defn largest-palindrome-product []
@@ -314,6 +314,16 @@
 ;; https://projecteuler.net/problem=24
 
 ;; https://projecteuler.net/problem=25
+
+;; https://projecteuler.net/problem=36
+(defn- is-palindrome-binary-num? [x]
+  (let [x-str (Integer/toString x 2)
+        x-seq (seq x-str)]
+    (= x-seq (reverse x-seq))))
+(defn double-base-palindromes [& [maximum]]
+  (let [maximum (or maximum 1000000)]
+    (reduce + (filter is-palindrome-binary-num?
+                      (filter is-palindrome-num? (range 1 maximum))))))
 
 ;; https://projecteuler.net/problem=67
 (defn maximum-path-sum-2 []
