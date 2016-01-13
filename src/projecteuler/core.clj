@@ -323,6 +323,25 @@
 
 ;; https://projecteuler.net/problem=25
 
+;; https://projecteuler.net/problem=26
+
+;; https://projecteuler.net/problem=27
+
+;; https://projecteuler.net/problem=28
+(def corners-seq
+  ((fn next-corners [cur pos]
+     (let [base   (last cur)
+           factor (* 2 pos)
+           new    (map #(+ base (* factor %)) (range 1 5))]
+       (lazy-seq (cons cur (next-corners new (inc pos))))))
+   '(1) 1))
+(defn number-spiral-diagonals [& [size]]
+  (let [s (or size 1001)
+        c (/ (inc s) 2)]
+    (if (even? s)
+      nil
+      (apply + (flatten (take c corners-seq))))))
+
 ;; https://projecteuler.net/problem=36
 (defn- is-palindrome-binary-num? [x]
   (let [x-str (Integer/toString x 2)
@@ -333,6 +352,22 @@
     (reduce + (filter is-palindrome-binary-num?
                       (filter is-palindrome-num? (range 1 maximum))))))
 
+;; https://projecteuler.net/problem=52
+(defn permuted-multiples []
+  (let [stream  (iterate inc 1)
+        mults   (fn [x] (map #(* x %) (range 1 7)))
+        to-set  (fn [x] (set (str x)))
+        matches (fn [x] (apply = (map to-set (mults x))))]
+    (first (filter matches stream))))
+
 ;; https://projecteuler.net/problem=67
 (defn maximum-path-sum-2 []
   (maximum-path-sum "data/067.txt"))
+
+;; https://projecteuler.net/problem=97
+(defn large-non-mersenne-prime []
+  (apply str
+         (reverse (take 10
+                        (reverse (str (+ (* 28433
+                                            (.pow (BigInteger. "2") 7830457))
+                                         1)))))))
