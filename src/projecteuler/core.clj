@@ -371,3 +371,14 @@
                         (reverse (str (+ (* 28433
                                             (.pow (BigInteger. "2") 7830457))
                                          1)))))))
+
+;; https://projecteuler.net/problem=99
+(defn- pair-to-bigint [base exp]
+  (.pow (BigInteger. base) (Integer/parseInt exp)))
+(defn largest-exponential [& [source]]
+  (let [source (or source "data/099.txt")
+        data   (slurp source)]
+    (last (last (sort #(compare (first %1) (first %2))
+                      (map-indexed #(list (apply pair-to-bigint (rest %2))
+                                          (inc %1))
+                                   (re-seq #"(\d+),(\d+)" data)))))))
