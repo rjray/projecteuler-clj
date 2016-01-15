@@ -382,3 +382,10 @@
                       (map-indexed #(list (apply pair-to-bigint (rest %2))
                                           (inc %1))
                                    (re-seq #"(\d+),(\d+)" data)))))))
+(defn largest-exponential-parallel [& [source]]
+  (let [source (or source "data/099.txt")
+        data   (slurp source)
+        seq    (re-seq #"(\d+),(\d+)" data)]
+    (last (last (sort #(compare (first %1) (first %2))
+                      (pmap #(list (apply pair-to-bigint (rest %)) (first %))
+                            (map-indexed #(cons (inc %1) (rest %2)) seq)))))))
