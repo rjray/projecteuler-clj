@@ -11,8 +11,8 @@
 ;; https://projecteuler.net/problem=2
 (def fib-seq
   ((fn rfib [a b]
-     (lazy-seq (cons a (rfib b (+ a b)))))
-   0 1))
+     (lazy-seq (cons a (rfib b (+' a b)))))
+   1 1))
 (defn sum-even-fibo-terms [& [maximum]]
   (let [maximum (or maximum 4000000)]
     (reduce + (filter even? (take-while #(< % maximum) fib-seq)))))
@@ -322,6 +322,10 @@
          (apply str))))
 
 ;; https://projecteuler.net/problem=25
+(defn fibo-1000 []
+  (first (first (drop-while #(< (second %) 1000)
+                            (map-indexed #(list (inc %1)
+                                                (count (str %2))) fib-seq)))))
 
 ;; https://projecteuler.net/problem=26
 
