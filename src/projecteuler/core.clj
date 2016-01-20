@@ -376,6 +376,14 @@
         max (* (inc n) (pow 9))]
     (reduce + (filter #(= % (sum %)) (range 10 (inc max))))))
 
+;; https://projecteuler.net/problem=34
+(defn digit-factorials-sum []
+  (let [fact-map (apply hash-map
+                        (flatten (map #(list (char (+ % 48)) (! %))
+                                      (range 10))))
+        sum      (fn [a] (apply + (map fact-map (str a))))]
+    (apply + (filter #(= % (sum %)) (range 10 1000000)))))
+
 ;; https://projecteuler.net/problem=36
 (defn- is-palindrome-binary-num? [x]
   (let [x-str (Integer/toString x 2)
