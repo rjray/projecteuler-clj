@@ -318,11 +318,13 @@
 ;; https://projecteuler.net/problem=22
 (def uc-map
   (apply hash-map (flatten (map #(list (char (+ % 64)) %) (range 1 27)))))
+(defn- word-score [w]
+  (apply + (map uc-map w)))
 (defn names-scores [& [file]]
   (let [file  (or file "data/022.txt")
         data  (slurp file)
         names (sort (re-seq #"[A-Z]+" data))]
-    (reduce + (map-indexed #(* (inc %1) (apply + (map uc-map %2))) names))))
+    (reduce + (map-indexed #(* (inc %1) (word-score %2)) names))))
 
 ;; https://projecteuler.net/problem=23
 
@@ -383,6 +385,16 @@
   (let [maximum (or maximum 1000000)]
     (reduce + (filter is-palindrome-binary-num?
                       (filter is-palindrome-num? (range 1 maximum))))))
+
+;; https://projecteuler.net/problem=42
+(defn coded-triangle-numbers [& [file]]
+  (let [file      (or file "data/042.txt")
+        data      (slurp file)
+        words     (re-seq #"\w+" data)
+        maxlen    (apply max (map count words))
+        maxcode   (* maxlen 26)
+        triangles (set (take-while #(< % maxcode) (triangular-numbers)))]
+    (apply + (map #(if (nil? (triangles %)) 0 1) (map word-score words)))))
 
 ;; https://projecteuler.net/problem=48
 (defn- pow' [a]
