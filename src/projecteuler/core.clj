@@ -366,6 +366,14 @@
     (count (set (for [a (range 2 (inc n)) b (range 2 (inc n))]
                   (apply *' (repeat b a)))))))
 
+;; https://projecteuler.net/problem=30
+(defn digit-nth-powers-sum-naive [& [n]]
+  (let [n   (or n 5)
+        pow (fn [a] (apply * (repeat n a)))
+        sum (fn [a] (apply + (map pow (map num-map (str a)))))
+        max (* (inc n) (pow 9))]
+    (reduce + (filter #(= % (sum %)) (range 10 (inc max))))))
+
 ;; https://projecteuler.net/problem=36
 (defn- is-palindrome-binary-num? [x]
   (let [x-str (Integer/toString x 2)
@@ -375,6 +383,18 @@
   (let [maximum (or maximum 1000000)]
     (reduce + (filter is-palindrome-binary-num?
                       (filter is-palindrome-num? (range 1 maximum))))))
+
+;; https://projecteuler.net/problem=48
+(defn- pow' [a]
+  (reduce *' (repeat a a)))
+(defn self-powers [& [max]]
+  (let [max (or max 1000)]
+    (apply str
+           (reverse (take 10
+                          (reverse (str (reduce +'
+                                                (map pow'
+                                                     (range 1
+                                                            (inc max)))))))))))
 
 ;; https://projecteuler.net/problem=52
 (defn permuted-multiples []
