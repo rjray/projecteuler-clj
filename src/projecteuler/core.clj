@@ -360,6 +360,12 @@
       nil
       (apply + (flatten (take c corners-seq))))))
 
+;; https://projecteuler.net/problem=29
+(defn distinct-powers [& [n]]
+  (let [n (or n 100)]
+    (count (set (for [a (range 2 (inc n)) b (range 2 (inc n))]
+                  (apply *' (repeat b a)))))))
+
 ;; https://projecteuler.net/problem=36
 (defn- is-palindrome-binary-num? [x]
   (let [x-str (Integer/toString x 2)
