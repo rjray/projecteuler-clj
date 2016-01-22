@@ -1,4 +1,5 @@
-(ns projecteuler.core)
+(ns projecteuler.core
+  (:require [projecteuler.core :refer [num-map]]))
 
 ;; https://projecteuler.net/problem=16
 

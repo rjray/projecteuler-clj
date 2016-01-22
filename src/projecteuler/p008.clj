@@ -1,5 +1,6 @@
 (ns projecteuler.core
-  (:require [clojure.string :as str])
+  (:require [projecteuler.core :refer [num-map]]
+            [clojure.string :as str])
 
 ;; https://projecteuler.net/problem=8
 

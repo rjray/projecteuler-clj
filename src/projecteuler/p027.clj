@@ -1,4 +1,6 @@
-(ns projecteuler.core)
+(ns projecteuler.core
+  (:require [projecteuler.core :refer [is-prime?]])
+  )
 
 ;; https://projecteuler.net/problem=27
 

@@ -48,6 +48,3 @@
 
 (defn is-prime? [n]
   (= n (first (drop-while #(< % n) primes))))
-
-(defn pow' [a]
-  (reduce *' (repeat a a)))

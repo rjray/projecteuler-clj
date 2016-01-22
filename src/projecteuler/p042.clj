@@ -1,4 +1,5 @@
-(ns projecteuler.core)
+(ns projecteuler.core
+  (:require [projecteuler.core :refer [word-score triangular-numbers]]))
 
 ;; https://projecteuler.net/problem=42
 
