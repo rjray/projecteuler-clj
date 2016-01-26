@@ -6,6 +6,10 @@
 
 (def offset-prime-map (zipmap (range 2 9) (take 7 primes)))
 
+(defn- is-candidate? [p]
+  (and (even? (nth p 3))
+       (or (zero? (nth p 5))
+           (= 5 (nth p 5)))))
 (defn- is-divisible? [numstr]
   (not (some #(= % false)
              (map #(zero? (mod (Integer/parseInt (subs numstr (dec %) (+ % 2)))
@@ -13,4 +17,6 @@
 (defn sub-string-divisible-sum []
   (apply + (map bigint
                 (filter is-divisible?
-                        (map #(apply str %) (comb/permutations (range 10)))))))
+                        (map #(apply str %)
+                             (filter is-candidate?
+                                     (comb/permutations (range 10))))))))
