@@ -13,13 +13,13 @@
 (defn- get-euclid-solutions [max-p]
   (let [max-n (int (Math/sqrt (/ max-p 2)))
         max-m (inc max-n)]
-    (loop [m 1, c #{}]
+    (loop [n 1, c #{}]
       (cond
-       (> m max-m) c
-       :else (recur (inc m)
+       (> n max-n) c
+       :else (recur (inc n)
                     (set (reduce concat c
-                                 (map #(euclid-solutions % m max-p)
-                                      (range (inc m) max-n 2)))))))))
+                                 (map #(euclid-solutions % n max-p)
+                                      (range (inc n) max-m 2)))))))))
 
 (defn int-right-triangles-max [& [max]]
   (let [max (or max 999)]
