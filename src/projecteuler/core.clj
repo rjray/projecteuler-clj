@@ -48,3 +48,9 @@
 
 (defn is-prime? [n]
   (= n (first (drop-while #(< % n) primes))))
+
+(defn factorize [n]
+  (loop [x n [p & ps] primes factors []]
+    (cond (= 1 x) factors
+          (zero? (mod x p)) (recur (/ x p) primes (conj factors p))
+          :else (recur x ps factors))))
