@@ -18,5 +18,5 @@
 (defn count-primitive-pyth-triples [& [max]]
   (let [max-p (or max 3141592653589793N)
         max-n (int (Math/sqrt max-p))
-        max-m (inc max-n)]
+        max-m max-n]
     (apply + (pmap #(count-primitives % max-m max-p) (range 1 (inc max-n))))))
