@@ -54,3 +54,7 @@
     (cond (= 1 x) factors
           (zero? (mod x p)) (recur (/ x p) primes (conj factors p))
           :else (recur x ps factors))))
+
+(defn sum-proper-divisors [n]
+  (let [base (filter #(zero? (mod n %)) (range 2 (+ (Math/sqrt n) 1)))]
+    (reduce + 1 (set (concat (map #(/ n %) base) base)))))
