@@ -46,8 +46,15 @@
 (defn word-score [w]
   (apply + (map uc-map w)))
 
+;; (defn is-prime? [n]
+;;   (= n (first (drop-while #(< % n) primes))))
 (defn is-prime? [n]
-  (= n (first (drop-while #(< % n) primes))))
+  (if (even? n) false
+      (let [root (num (int (Math/sqrt n)))]
+        (loop [i 3]
+          (if (> i root) true
+              (if (zero? (mod n i)) false
+                  (recur (+ i 2))))))))
 
 (defn factorize [n]
   (loop [x n [p & ps] primes factors []]
