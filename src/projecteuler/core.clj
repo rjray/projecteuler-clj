@@ -58,3 +58,11 @@
 (defn sum-proper-divisors [n]
   (let [base (filter #(zero? (mod n %)) (range 2 (+ (Math/sqrt n) 1)))]
     (reduce + 1 (set (concat (map #(/ n %) base) base)))))
+
+(def corners-seq
+  ((fn next-corners [cur pos]
+     (let [base   (last cur)
+           factor (* 2 pos)
+           new    (map #(+ base (* factor %)) (range 1 5))]
+       (lazy-seq (cons cur (next-corners new (inc pos))))))
+   '(1) 1))
