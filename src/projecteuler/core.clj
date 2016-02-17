@@ -9,8 +9,7 @@
    1 1))
 
 (defn is-palindrome-num? [x]
-  (let [x-str (str x)
-        x-seq (seq x-str)]
+  (let [x-seq (seq (str x))]
     (= x-seq (reverse x-seq))))
 
 (defn prime? [n & [certainty]]
