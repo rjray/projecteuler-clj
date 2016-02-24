@@ -1,17 +1,7 @@
 (ns projecteuler.core
-  (:require [projecteuler.core :refer [factorize]]))
+  (:require [projecteuler.core :refer [totient]]))
 
 ;; https://projecteuler.net/problem=69
-
-; See:
-;   https://stackoverflow.com/questions/1019040/how-many-numbers-below-n-are-coprimes-to-n
-;   https://en.wikipedia.org/wiki/Euler's_totient_function
-
-(defn- factorize-pairs [n]
-  (map #(list (first %) (count (second %))) (group-by identity (factorize n))))
-(defn- totient [n]
-  (reduce * 1 (for [[p e] (factorize-pairs n)]
-                (* (dec p) (math/expt p (dec e))))))
 
 (defn totient-maximum-loop [& [max]]
   (let [max (or max 1000000)]

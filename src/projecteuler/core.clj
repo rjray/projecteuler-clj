@@ -61,6 +61,17 @@
           (zero? (mod x p)) (recur (/ x p) primes (conj factors p))
           :else (recur x ps factors))))
 
+; See:
+;   https://stackoverflow.com/questions/1019040/how-many-numbers-below-n-are-coprimes-to-n
+;   https://en.wikipedia.org/wiki/Euler's_totient_function
+
+(defn factorize-pairs [n]
+  (map #(list (first %) (count (second %))) (group-by identity (factorize n))))
+
+(defn totient [n]
+  (reduce * 1 (for [[p e] (factorize-pairs n)]
+                (* (dec p) (math/expt p (dec e))))))
+
 (defn sum-proper-divisors [n]
   (let [base (filter #(zero? (mod n %)) (range 2 (+ (Math/sqrt n) 1)))]
     (reduce + 1 (set (concat (map #(/ n %) base) base)))))
