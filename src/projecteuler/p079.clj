@@ -17,11 +17,13 @@
      (nil? try) graph
      :else      (recur (graph-one-try graph try) tries))))
 
+;; Breadth-first search approach inspired by this blog post:
+;; http://alexmic.net/password-derivation-project-euler/
 (defn- enqueue-neighbors [queue neighbors path]
   (concat queue
           (apply concat (map #(list (list % (cons % path))) neighbors))))
 
-(defn- find-solution [start graph universe target-len]
+(defn- find-solution [start graph target-len]
   (loop [queue (list (list start (list start)))
          solns ()]
     (cond
@@ -37,7 +39,7 @@
 (defn- find-passcodes [graph]
   (let [universe   (keys graph)
         target-len (count universe)]
-    (flatten (map #(find-solution % graph universe target-len) universe))))
+    (flatten (map #(find-solution % graph target-len) universe))))
 
 (defn passcode-derivation [& [file]]
   (->> (or file "data/079.txt")
