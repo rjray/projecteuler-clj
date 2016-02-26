@@ -1,4 +1,5 @@
-(ns projecteuler.core)
+(ns projecteuler.core
+  (:require [clojure.math.numeric-tower :as math]))
 
 ; Resources (functions, lazy-seqs, etc.) shared by two or more of the Euler
 ; solutions.
