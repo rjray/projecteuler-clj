@@ -1,5 +1,4 @@
-(ns projecteuler.core
-  (:require [clojure.math.combinatorics :as comb]))
+(ns projecteuler.core)
 
 ;; https://projecteuler.net/problem=78
 
@@ -21,8 +20,3 @@
                           (recur (+ px (* (p (- n (k i))) (sgn (mod i 4))))
                                  (inc i))))]
                 (recur (conj p (mod px 1000000)) n))))))
-
-(defn coin-partitions-naive []
-  (first (filter #(zero? (mod (second %) 1000000))
-                 (map #(list % (count (comb/partitions (repeat % 1))))
-                      (iterate inc 1)))))
