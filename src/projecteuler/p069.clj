@@ -18,6 +18,5 @@
 ;; 988238.434 msecs
 (defn totient-maximum [& [max]]
   (let [max (or max 1000000)]
-    (first (first (sort #(compare (last %2) (last %1))
-                        (pmap #(list % (/ % (totient %)))
-                              (range 2 (inc max))))))))
+    (ffirst (sort #(compare (last %2) (last %1))
+                  (pmap #(list % (/ % (totient %))) (range 2 (inc max)))))))

@@ -21,6 +21,6 @@
     (pandigital? t2)))
 
 (defn pandigital-fibo-ends []
-  (first (first (filter #(lead-pandigital? (first %))
-                        (filter #(pandigital? (second %))
-                                (drop-while #(< (first %) 2749) fib-idx))))))
+  (ffirst (filter #(lead-pandigital? (first %))
+                  (filter #(pandigital? (second %))
+                          (drop-while #(< (first %) 2749) fib-idx)))))

@@ -10,6 +10,7 @@
         q (quot max p)]
     (map #(vec (sort (list (* a %) (* b %) (* c %) (* p %))))
          (range 1 (inc q)))))
+
 (defn- get-euclid-solutions [max-p]
   (let [max-n (int (Math/sqrt (/ max-p 2)))
         max-m (inc max-n)]
@@ -23,6 +24,6 @@
 
 (defn int-right-triangles-max [& [max]]
   (let [max (or max 999)]
-    (first (first (sort #(compare (count (second %2))
-                                  (count (second %1)))
-                        (group-by last (get-euclid-solutions max)))))))
+    (ffirst (sort #(compare (count (second %2))
+                            (count (second %1)))
+                  (group-by last (get-euclid-solutions max))))))
