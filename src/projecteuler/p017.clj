@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p017
   (:require [clojure.string :as str]))
 
 ;; https://projecteuler.net/problem=17

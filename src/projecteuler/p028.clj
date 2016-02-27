@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p028
   (:require [projecteuler.core :refer [corners-seq]]))
 
 ;; https://projecteuler.net/problem=28

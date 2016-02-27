@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p036
   (:require [projecteuler.core :refer [is-palindrome-num?]]))
 
 ;; https://projecteuler.net/problem=36

@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p047
   (:require [projecteuler.core :refer [factorize]]))
 
 ;; https://projecteuler.net/problem=47

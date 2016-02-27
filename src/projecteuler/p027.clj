@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p027
   (:require [projecteuler.core :refer [is-prime?]])
   )
 

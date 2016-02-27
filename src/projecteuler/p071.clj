@@ -1,4 +1,4 @@
-(ns projecteuler.core)
+(ns projecteuler.p071)
 
 ;; https://projecteuler.net/problem=71
 

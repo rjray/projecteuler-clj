@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p008
   (:require [projecteuler.core :refer [num-map]]
             [clojure.string :as str])
 

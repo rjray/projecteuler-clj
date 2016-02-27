@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p012
   (:require [projecteuler.core :refer [primes triangular-numbers]]))
 
 ;; https://projecteuler.net/problem=12

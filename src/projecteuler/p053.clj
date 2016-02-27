@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p053
   (:require [projecteuler.core :refer [!]]))
 
 ;; https://projecteuler.net/problem=53

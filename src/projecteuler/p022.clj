@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p022
   (:require [projecteuler.core :refer [word-score]]))
 
 ;; https://projecteuler.net/problem=22

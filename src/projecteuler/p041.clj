@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p041
   (:require [projecteuler.core :refer [prime?]]
             [clojure.math.combinatorics :as comb]))
 

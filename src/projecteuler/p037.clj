@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p037
   (:require [projecteuler.core :refer [is-prime? primes]]
             [clojure.math.numeric-tower :as math]))
 

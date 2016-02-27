@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p023
   (:require [projecteuler.core :refer [sum-proper-divisors]]))
 
 ;; https://projecteuler.net/problem=23

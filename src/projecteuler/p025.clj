@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p025
   (:require [projecteuler.core :refer [fib-seq]]))
 
 ;; https://projecteuler.net/problem=25

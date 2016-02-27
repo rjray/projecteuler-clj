@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p063
   (:require [clojure.math.numeric-tower :as math]))
 
 ;; https://projecteuler.net/problem=63

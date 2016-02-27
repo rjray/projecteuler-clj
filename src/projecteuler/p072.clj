@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p072
   (:require [projecteuler.core :refer [totient]]))
 
 ;; https://projecteuler.net/problem=72

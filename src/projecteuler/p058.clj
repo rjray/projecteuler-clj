@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p058
   (:require [projecteuler.core :refer [corners-seq is-prime?]]))
 
 ;; https://projecteuler.net/problem=58

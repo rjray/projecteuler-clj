@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p079
   (:require [clojure.set :as sets]))
 
 ;; https://projecteuler.net/problem=79

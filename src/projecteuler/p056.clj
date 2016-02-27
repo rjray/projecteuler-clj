@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p056
   (:require [clojure.math.numeric-tower :as math]
             [projecteuler.core :refer [num-map]]))
 

@@ -1,4 +1,4 @@
-(ns projecteuler.core
+(ns projecteuler.p019
   (import [java.util GregorianCalendar]))
 
 ;; https://projecteuler.net/problem=19
