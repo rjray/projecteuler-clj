@@ -21,8 +21,7 @@
   (->> msg
        (filter #(and (>= % 65) (<= % 90)))
        (group-by identity)
-       (vals)
-       (map #(list (first %) (count %)))
+       (reduce-kv (fn [c k v] (cons (list k (count v)) c)) ())
        (sort #(compare (second %2) (second %1)))
        (take n)
        (map #(bit-xor 32 (first %)))))
