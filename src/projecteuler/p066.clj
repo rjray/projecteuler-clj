@@ -15,9 +15,9 @@
        (= 1 (- (* num num) (* D den den))) (list D num)
        :else
        (let [m (- (* d a) m)
-             d (/ (- D (* m m)) d)
-             ; It isn't clear from the C# code, but this has to be cast down to
-             ; bigint:
+             ; It isn't clear from the C# code, but these have to be cast down
+             ; to bigint:
+             d (bigint (/ (- D (* m m)) d))
              a (bigint (/ (+ limit m) d))
              numm2 numm1
              numm1 num
