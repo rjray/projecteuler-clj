@@ -1,4 +1,4 @@
-(ns projecteuler.p051
+(ns projecteuler.p087
   (:require [projecteuler.core :refer [primes]]))
 
 ;; https://projecteuler.net/problem=87
