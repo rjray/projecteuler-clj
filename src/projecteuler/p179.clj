@@ -22,7 +22,7 @@
 
 (defn consecutive-positive-divisors [& [maxn]]
   (let [n  (or maxn 10000000)
-        dv (dynamic-divisors (vec (repeat n 0)))]
+        dv (dynamic-divisors n)]
     (apply + (for [i (range 3 n)]
                (cond
                 (= (dv i) (dv (dec i))) 1
