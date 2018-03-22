@@ -17,28 +17,28 @@
     (loop [[d & rs] r, last-d 1000, value 0]
       (let [this-d (roman2arabic d)]
         (cond
-         (nil? d) value
-         :else    (if (< last-d this-d)
-                    (recur rs this-d (+ value this-d (* -2 last-d)))
-                    (recur rs this-d (+ value this-d))))))))
+          (nil? d) value
+          :else    (if (< last-d this-d)
+                     (recur rs this-d (+ value this-d (* -2 last-d)))
+                     (recur rs this-d (+ value this-d))))))))
 
 (defn- roman-element [digit i v x]
   (cond
-   (and (>= digit 1) (<= digit 3)) (apply str (repeat digit i))
-   (= digit 4)                     (str i v)
-   (= digit 5)                     v
-   (and (>= digit 6) (<= digit 8)) (apply str (cons v (repeat (- digit 5) i)))
-   (= digit 9)                     (str i x)
-   :else                           ""))
+    (and (>= digit 1) (<= digit 3)) (str/join (repeat digit i))
+    (= digit 4)                     (str i v)
+    (= digit 5)                     v
+    (and (>= digit 6) (<= digit 8)) (str/join (cons v (repeat (- digit 5) i)))
+    (= digit 9)                     (str i x)
+    :else                           ""))
 
 (defn- roman [a]
   (loop [[place & fs] figure, x "", arg a, value ""]
     (cond
-     (nil? place) value
-     :else
-     (let [digit (int (/ arg place)), [i v] (roman-digit place)]
-       (recur fs i (- arg (* digit place))
-              (str value (roman-element digit i v x)))))))
+      (nil? place) value
+      :else
+      (let [digit (int (/ arg place)), [i v] (roman-digit place)]
+        (recur fs i (- arg (* digit place))
+               (str value (roman-element digit i v x)))))))
 
 (defn roman-numerals [& [file]]
   (->> (or file "data/089.txt")

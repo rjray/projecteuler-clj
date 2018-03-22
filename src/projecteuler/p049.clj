@@ -12,16 +12,14 @@
   (let [[n & ps] plist, pset (set ps)]
     (loop [ps ps]
       (cond
-       (empty? ps) nil
-       :else
-       (let [o    (first ps)
-             diff (- o n)
-             p    (+ o diff)]
-         (cond
-          (and (pset p) (are-permutations? n o p))
-              (list n o p diff)
-          :else
-              (recur (rest ps))))))))
+        (empty? ps) nil
+        :else
+        (let [o    (first ps)
+              diff (- o n)
+              p    (+ o diff)]
+          (cond
+            (and (pset p) (are-permutations? n o p)) (list n o p diff)
+            :else                                    (recur (rest ps))))))))
 
 (defn prime-permutations []
   (let [primeset (->> primes
@@ -30,7 +28,6 @@
     (loop [primeset primeset
            soln     ()]
       (cond
-       (empty? primeset)
-           (filter seq soln)
-       :else
-           (recur (rest primeset) (cons (find-permutations primeset) soln))))))
+        (empty? primeset) (remove empty? soln)
+        :else             (recur (rest primeset)
+                                 (cons (find-permutations primeset) soln))))))

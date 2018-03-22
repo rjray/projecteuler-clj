@@ -14,5 +14,5 @@
                  (is-target? a b c))
           (* a b c)
           (if (= b 998)
-            (recur (+ a 1) (+ a 2))
+            (recur (inc a) (+ a 2))
             (recur a (inc b))))))))

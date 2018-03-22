@@ -1,5 +1,6 @@
 (ns projecteuler.p035
-  (:require [projecteuler.core :refer [primes]]))
+  (:require [projecteuler.core :refer [primes]]
+            [clojure.string :as str]))
 
 ;; https://projecteuler.net/problem=35
 
@@ -10,12 +11,13 @@
            s strnum
            l (list num)]
       (cond
-       (= m n) l
-       :else
-       (let [rotation (apply str (concat (rest s) (list (first s))))]
-         (recur (inc m) rotation (cons (Integer/parseInt rotation) l)))))))
-(defn- all-are-prime [c ps]
-  (not (some nil? (map #(ps %) c))))
+        (= m n) l
+        :else
+        (let [rotation (str/join (concat (rest s) (list (first s))))]
+          (recur (inc m) rotation (cons (Integer/parseInt rotation) l)))))))
+
+(defn- all-are-prime [c ps] (not-any? nil? (map ps c)))
+
 (defn- circular-primes [max]
   ;; Avg elapsed time: 44.71ms
   (let [primeset (set (take-while #(< % max) primes))]

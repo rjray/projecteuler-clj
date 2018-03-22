@@ -1,12 +1,13 @@
 (ns projecteuler.p145
-  (:require [projecteuler.core :refer [num-map]]))
+  (:require [projecteuler.core :refer [num-map]]
+            [clojure.string :as str]))
 
 ;; https://projecteuler.net/problem=145
 
 ;; Just a basic brute-force approach with some optimization.
 
 (defn- reverse-num [n]
-  (Integer/parseInt (apply str (reverse (str n)))))
+  (Integer/parseInt (str/reverse (str n))))
 
 (defn- all-digits-odd? [n]
   (not-any? even? (map num-map (str n))))

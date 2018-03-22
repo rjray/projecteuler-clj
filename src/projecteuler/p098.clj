@@ -1,25 +1,24 @@
 (ns projecteuler.p098
-  (:require [clojure.math.combinatorics :as comb]))
+  (:require [clojure.math.combinatorics :as comb]
+            [clojure.string :as str]))
 
 ;; https://projecteuler.net/problem=98
 
 (def ^:private all-permutations
-  (vec (map #(apply concat (map comb/permutations
-                                (comb/combinations (range 10) %))) (range 10))))
+  (vec (map #(mapcat comb/permutations
+                     (comb/combinations (range 10) %)) (range 10))))
 (def ^:private all-squares
   (set (map str (map #(* % %) (range 1 (inc (Math/sqrt 999999999)))))))
 
 (def ^:private not-nil? (complement nil?))
 
-(defn- word-key [s]
-  (apply str (sort (seq s))))
+(defn- word-key [s] (str/join (sort (seq s))))
 
-(defn- word-key-distinct [s]
-  (apply str (distinct (sort (seq s)))))
+(defn- word-key-distinct [s] (str/join (distinct (sort (seq s)))))
 
 (defn- encode-words [key perm ws]
   (let [keymap (zipmap (seq key) perm)]
-    (map #(apply str (map keymap %)) ws)))
+    (map #(str/join (map keymap %)) ws)))
 
 (defn- square-pair? [s]
   (if (and (all-squares (first s)) (all-squares (last s))) s))
@@ -31,7 +30,7 @@
   (filter #(> (count %) 1) (vals (group-by word-key words))))
 
 (defn- anagram-pairs [anagrams]
-  (apply concat (map #(comb/combinations % 2) anagrams)))
+  (mapcat #(comb/combinations % 2) anagrams))
 
 (defn- keyed-anagram-pairs [pairs]
   (group-by #(word-key-distinct (first %)) pairs))

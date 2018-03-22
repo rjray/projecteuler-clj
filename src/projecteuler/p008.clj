@@ -1,6 +1,6 @@
 (ns projecteuler.p008
   (:require [projecteuler.core :refer [num-map]]
-            [clojure.string :as str])
+            [clojure.string :as str]))
 
 ;; https://projecteuler.net/problem=8
 
@@ -25,6 +25,7 @@
        "84580156166097919133875499200524063689912560717606"
        "05886116467109405077541002256983155200055935729725"
        "71636269561882670428252483600823257530420752963450"))
+
 (defn- max-sequence [sequence n]
   (loop [s   sequence
          n   n
@@ -33,8 +34,9 @@
           value (reduce * (map num-map n-seq))
           acc   (max acc value)]
       (cond
-       (<= n (count n-seq)) (recur (rest s) n acc)
-       true                   acc))))
+        (<= n (count n-seq)) (recur (rest s) n acc)
+        true                  acc))))
+
 (defn largest-series-product [& [digits n]]
   (let [digits (or digits target-number)
         n      (or n 13)]

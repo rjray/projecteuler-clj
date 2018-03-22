@@ -1,9 +1,9 @@
-(ns projecteuler.p062)
+(ns projecteuler.p062
+  (:require [clojure.string :as str]))
 
 ;; https://projecteuler.net/problem=62
 
-(defn- make-key [n]
-  (apply str (sort (seq (str n)))))
+(defn- make-key [n] (str/join (sort (seq (str n)))))
 
 (defn- add-to-cube-map [n cmap]
   (let [k (make-key n)
@@ -23,5 +23,5 @@
             cmap (add-to-cube-map n3 cmap)
             v    (get-longest-list cmap)]
         (cond
-         (= (count v) targetlen) v
-         :else                   (recur (inc n) cmap))))))
+          (= (count v) targetlen) v
+          :else                   (recur (inc n) cmap))))))

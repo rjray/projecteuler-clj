@@ -8,7 +8,7 @@
    1 1))
 
 (def ^:private fib-idx
-  (map #(list %1 %2) (iterate inc 1) fib-seq-trunc))
+  (map list (iterate inc 1) fib-seq-trunc))
 
 (defn- pandigital? [n]
   (= (sort (seq (str n))) [\1 \2 \3 \4 \5 \6 \7 \8 \9]))

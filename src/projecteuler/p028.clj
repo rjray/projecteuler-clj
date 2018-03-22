@@ -6,6 +6,4 @@
 (defn number-spiral-diagonals [& [size]]
   (let [s (or size 1001)
         c (/ (inc s) 2)]
-    (if (even? s)
-      nil
-      (apply + (flatten (take c corners-seq))))))
+    (when-not (even? s) (apply + (flatten (take c corners-seq))))))

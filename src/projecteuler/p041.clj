@@ -5,8 +5,8 @@
 ;; https://projecteuler.net/problem=41
 
 (defn- digit-permutations [from to]
-  (apply concat (map comb/permutations (map #(range 1 (inc %))
-                                            (range from (inc to))))))
+  (mapcat comb/permutations (map #(range 1 (inc %))
+                                 (range from (inc to)))))
 (defn- permutation-to-num [p]
   (Integer/parseInt (reduce str p)))
 

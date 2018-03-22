@@ -6,4 +6,4 @@
 (defn lattice-paths [& [k]]
   (let [k (or k 20)
         n (* k 2)]
-    (apply * (map #(/ (- (+ n 1) %) %) (range 1 (inc k))))))
+    (apply * (map #(/ (- (inc n) %) %) (range 1 (inc k))))))

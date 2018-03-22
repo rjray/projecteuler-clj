@@ -18,14 +18,14 @@
 (defn- v-loop [limit u pairs]
   (loop [v 1, pairs pairs]
     (cond
-     (= u v)                    pairs
-     (not (= (math/gcd u v) 1)) (recur (inc v) pairs)
-     (zero? (mod (- u v) 3))    (recur (inc v) pairs)
-     :else
-     (let [a (+ (* 2 u v) (* v v)), b (- (* u u) (* v v))]
-       (if (> (+ a b) limit)
-         pairs
-         (recur (inc v) (k-loop limit a b pairs)))))))
+      (= u v)                 pairs
+      (not= (math/gcd u v) 1) (recur (inc v) pairs)
+      (zero? (mod (- u v) 3)) (recur (inc v) pairs)
+      :else
+      (let [a (+ (* 2 u v) (* v v)), b (- (* u u) (* v v))]
+        (if (> (+ a b) limit)
+          pairs
+          (recur (inc v) (k-loop limit a b pairs)))))))
 
 (defn- get-pairs [limit]
   (let [limit-sqrt (inc (int (Math/sqrt limit)))]

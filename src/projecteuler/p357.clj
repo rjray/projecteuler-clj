@@ -38,9 +38,8 @@
     (loop [n 0, sum 1]
       (let [candidate (+ (* 4 n) 2)]
         (cond
-         (>= candidate limit)                  sum
-         (and (primes (+ candidate 1))
-              (primes (+ 2 (/ candidate 2)))
-              (is-prime-gen candidate primes)) (recur (inc n) (+ sum candidate))
-         :else
-         (recur (inc n) sum))))))
+          (>= candidate limit)                  sum
+          (and (primes (inc candidate))
+               (primes (+ 2 (/ candidate 2)))
+               (is-prime-gen candidate primes)) (recur (inc n) (+ sum candidate))
+          :else                                 (recur (inc n) sum))))))

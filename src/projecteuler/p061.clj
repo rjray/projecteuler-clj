@@ -8,8 +8,8 @@
 ;; The figurate functions F(i) for i in (3 .. 8)
 (defn- Tri [n] (/ (* n (inc n)) 2))
 (defn- Squ [n] (* n n))
-(defn- Pen [n] (/ (* n (- (* 3 n) 1)) 2))
-(defn- Hex [n] (* n (- (* 2 n) 1)))
+(defn- Pen [n] (/ (* n (dec (* 3 n))) 2))
+(defn- Hex [n] (* n (dec (* 2 n))))
 (defn- Hep [n] (/ (* n (- (* 5 n) 3)) 2))
 (defn- Oct [n] (* n (- (* 3 n) 2)))
 
@@ -33,7 +33,7 @@
 
 ;; Get the semi-cyclical pairs for the given input pair p
 (defn- get-cycl-pairs [p pairs]
-  (filter #(and (not (= (first p) (first %))) (cyclical (last p) (last %)))
+  (filter #(and (not= (first p) (first %)) (cyclical (last p) (last %)))
           pairs))
 
 ;; Create the mappings of each pair p to the other pairs it is cyclical with
@@ -43,22 +43,22 @@
 ;; Search for a solution from the vantage point of a given partial solution
 (defn- search-solution [types data length mappings]
   (cond
-   (and (= (count types) length)
-        (cyclical (last (first data)) (last (last data))))
-   (prn (apply + (map last data)) (reverse data))
-   :else
-   (let [all-paths   (mappings (first data))
-         valid-paths (filter #(not (types (first %))) all-paths)]
-     (filter (complement empty?)
-             (map #(search-solution (conj types (first %))
-                                    (cons % data)
-                                    length
-                                    mappings) valid-paths)))))
+    (and (= (count types) length)
+         (cyclical (last (first data)) (last (last data))))
+    (prn (apply + (map last data)) (reverse data))
+    :else
+    (let [all-paths   (mappings (first data))
+          valid-paths (filter #(not (types (first %))) all-paths)]
+      (remove empty?
+              (map #(search-solution (conj types (first %))
+                                     (cons % data)
+                                     length
+                                     mappings) valid-paths)))))
 
 (defn- find-cyclical-figurates [which]
   (let [pairs    (gen-all-pairs which)
         mappings (gen-mappings pairs)]
-    (filter (complement empty?)
+    (remove empty?
             (map #(search-solution #{ (first %) }
                                    (list %)
                                    (count which)

@@ -28,4 +28,4 @@
         squareset (squares-set top)]
     (apply + (map digit-sum
                   (map #(squareroot % digits)
-                       (filter #(not (squares %)) (range 1 (inc top))))))))
+                       (remove squares (range 1 (inc top))))))))

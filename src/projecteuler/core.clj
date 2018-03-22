@@ -53,19 +53,20 @@
 ;;   (= n (first (drop-while #(< % n) primes))))
 (defn is-prime? [n]
   (cond
-   (= 2 n)   true
-   (even? n) false
-   :else     (let [root (num (int (Math/sqrt n)))]
-               (loop [i 3]
-                 (if (> i root) true
-                     (if (zero? (mod n i)) false
-                         (recur (+ i 2))))))))
+    (= 2 n)   true
+    (even? n) false
+    :else     (let [root (num (int (Math/sqrt n)))]
+                (loop [i 3]
+                  (if (> i root) true
+                      (if (zero? (mod n i)) false
+                          (recur (+ i 2))))))))
 
 (defn factorize [n]
   (loop [x n [p & ps] primes factors []]
-    (cond (= 1 x) factors
-          (zero? (mod x p)) (recur (/ x p) primes (conj factors p))
-          :else (recur x ps factors))))
+    (cond
+      (= 1 x)           factors
+      (zero? (mod x p)) (recur (/ x p) primes (conj factors p))
+      :else             (recur x ps factors))))
 
 ; See:
 ;   https://stackoverflow.com/questions/1019040/how-many-numbers-below-n-are-coprimes-to-n
@@ -79,7 +80,7 @@
                 (* (dec p) (math/expt p (dec e))))))
 
 (defn sum-proper-divisors [n]
-  (let [base (filter #(zero? (mod n %)) (range 2 (+ (Math/sqrt n) 1)))]
+  (let [base (filter #(zero? (mod n %)) (range 2 (inc (Math/sqrt n))))]
     (reduce + 1 (set (concat (map #(/ n %) base) base)))))
 
 (def corners-seq

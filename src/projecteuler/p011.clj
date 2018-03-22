@@ -23,28 +23,33 @@
     (20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74  4 36 16)
     (20 73 35 29 78 31 90  1 74 31 49 71 48 86 81 16 23 57  5 54)
     ( 1 70 54 71 83 51 54 69 16 92 33 48 61 43 52  1 89 19 67 48)))
-(defn- num-at [x y grid]
-  (nth (nth grid y '()) x 0))
+
+(defn- num-at [x y grid] (nth (nth grid y '()) x 0))
+
 (defn- prod-right [x y grid]
   (* (num-at x       y grid)
-     (num-at (+ x 1) y grid)
+     (num-at (inc x) y grid)
      (num-at (+ x 2) y grid)
      (num-at (+ x 3) y grid)))
+
 (defn- prod-down [x y grid]
   (* (num-at x y       grid)
-     (num-at x (+ y 1) grid)
+     (num-at x (inc y) grid)
      (num-at x (+ y 2) grid)
      (num-at x (+ y 3) grid)))
+
 (defn- prod-diag-d [x y grid]
   (* (num-at x       y       grid)
-     (num-at (+ x 1) (+ y 1) grid)
+     (num-at (inc x) (inc y) grid)
      (num-at (+ x 2) (+ y 2) grid)
      (num-at (+ x 3) (+ y 3) grid)))
+
 (defn- prod-diag-u [x y grid]
   (* (num-at x       y       grid)
-     (num-at (+ x 1) (- y 1) grid)
+     (num-at (inc x) (dec y) grid)
      (num-at (+ x 2) (- y 2) grid)
      (num-at (+ x 3) (- y 3) grid)))
+
 (defn product-in-a-grid [& [grid]]
   (let [grid  (or grid num-grid)
         y-max (count grid)
@@ -53,10 +58,10 @@
            y   0
            acc 0]
       (cond
-       (= y y-max) acc
-       (= x x-max) (recur 0 (inc y) acc)
-       true        (recur (inc x) y (max acc
-                                         (prod-right  x y grid)
-                                         (prod-down   x y grid)
-                                         (prod-diag-u x y grid)
-                                         (prod-diag-d x y grid)))))))
+        (= y y-max) acc
+        (= x x-max) (recur 0 (inc y) acc)
+        true        (recur (inc x) y (max acc
+                                          (prod-right  x y grid)
+                                          (prod-down   x y grid)
+                                          (prod-diag-u x y grid)
+                                          (prod-diag-d x y grid)))))))

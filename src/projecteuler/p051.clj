@@ -8,7 +8,7 @@
 ;; http://blog.dreamshire.com/project-euler-51-solution/
 
 (defn- is-a-prime? [s]
-  (and (not (= (first s) \0))
+  (and (not= (first s) \0)
        (is-prime? (Integer/parseInt s))))
 
 (defn- is-eight-prime-family? [ps c]
@@ -24,7 +24,7 @@
     (or (and (has-n ps \0 3)
              (is-eight-prime-family? ps \0))
         (and (has-n ps \1 3)
-             (not (= \1 last-digit))
+             (not= \1 last-digit)
              (is-eight-prime-family? ps \1))
         (and (has-n ps \2 3)
              (is-eight-prime-family? ps \2)))))

@@ -1,5 +1,5 @@
 (ns projecteuler.p024
-  (:require [clojure.math.combinatorics :as comb])
+  (:require [clojure.math.combinatorics :as comb]))
 
 ;; https://projecteuler.net/problem=24
 

@@ -11,4 +11,4 @@
   (let [maxd (or maxd 1000)]
     (count (filter #(> (count (str (numerator %)))
                        (count (str (denominator %))))
-                   (map #(+ 1 (terms %)) (range 1 (inc maxd)))))))
+                   (map #(inc (terms %)) (range 1 (inc maxd)))))))

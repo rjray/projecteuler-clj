@@ -11,11 +11,11 @@
   (let [ps (take-while #(< % n) primes)]
     (loop [ps ps]
       (cond
-       (empty? ps)       false
-       (is-twice-square? (- n (first ps))) true
-       :else             (recur (rest ps))))))
+        (empty? ps)       false
+        (is-twice-square? (- n (first ps))) true
+        :else             (recur (rest ps))))))
 
 (defn goldbach-other []
-  (first (filter (complement goldbach?)
-                 (filter (complement is-prime?)
+  (first (remove goldbach?
+                 (remove is-prime?
                          (filter odd? (iterate inc 3))))))

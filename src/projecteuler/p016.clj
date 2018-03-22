@@ -6,4 +6,4 @@
 (defn power-digit-sum [& [x n]]
   (let [x (or x 2)
         n (or n 1000)]
-   (reduce + (map num-map (.toString (.pow (BigInteger. (str x)) n))))))
+    (reduce + (map num-map (str (.pow (BigInteger. (str x)) n))))))

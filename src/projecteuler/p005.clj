@@ -13,4 +13,4 @@
 (defn smallest-multiple-2 []
   (let [gcd (fn [a b] (if (zero? b) a (recur b (mod a b))))
         lcm (fn [a b] (/ (* a b) (gcd a b)))]
-    (reduce #(lcm %1 %2) (range 1 21))))
+    (reduce lcm (range 1 21))))

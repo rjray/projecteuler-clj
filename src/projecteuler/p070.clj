@@ -8,8 +8,7 @@
         tns (sort (seq (str tn)))]
     (= ns tns)))
 
-(defn- fast-totient [p1 p2]
-  (* (- p1 1) (- p2 1)))
+(defn- fast-totient [p1 p2] (* (dec p1) (dec p2)))
 
 (defn- get-permutation-totients [maxn prime-list]
   (filter seq?

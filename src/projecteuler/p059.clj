@@ -4,8 +4,7 @@
 
 ;; https://projecteuler.net/problem=59
 
-(defn- msg-to-str [msg]
-  (apply str (map char msg)))
+(defn- msg-to-str [msg] (str/join (map char msg)))
 
 (defn- xor-decrypt [ks msg]
   (let [kv (vec ks), kl (count ks)]

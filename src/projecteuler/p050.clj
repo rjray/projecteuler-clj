@@ -14,7 +14,7 @@
       (let [sums (reverse (take c prime-sums))
             subs (take c (reverse (take-while #(< (- % (last sums)) maxval)
                                               (rest prime-sums))))]
-        (if-let [el (some #(if (prime? %) % nil)
-                          (map #(- %1 %2) subs sums))]
+        (if-let [el (some #(when (prime? %) %)
+                          (map - subs sums))]
           el
           (recur (inc c)))))))

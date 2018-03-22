@@ -14,8 +14,8 @@
           p (+ a b c)]
       (loop [pp p, tv tv]
         (cond
-         (> pp limit) tv
-         :else        (recur (+ pp p) (assoc tv pp (inc (tv pp)))))))
+          (> pp limit) tv
+          :else        (recur (+ pp p) (update-in tv [pp] inc)))))
     tv))
 
 (defn- find-counts [limit]
@@ -23,9 +23,9 @@
         triangles (vec (repeat (inc limit) 0))]
     (loop [m 2, n 1, t triangles]
       (cond
-       (= m mlimit) t
-       (= n m)      (recur (inc m) 1 t)
-       :else        (recur m (inc n) (get-counts limit m n t))))))
+        (= m mlimit) t
+        (= n m)      (recur (inc m) 1 t)
+        :else        (recur m (inc n) (get-counts limit m n t))))))
 
 (defn singular-integer-right-triangles [& [maxp]]
   (let [maxp (or maxp 1500000)]
