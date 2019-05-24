@@ -6,5 +6,6 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/math.combinatorics "0.1.1"]
                  [org.clojure/math.numeric-tower "0.0.4"]]
-  :plugins [[lein-kibit "0.1.6"]
+  :plugins [[lein-cljfmt "0.6.1"]
+            [lein-kibit "0.1.6"]
             [lein-pprint "1.2.0"]])
