@@ -21,7 +21,7 @@
 (def uc-map
   (apply hash-map (flatten (map #(list (char (+ % 64)) %) (range 1 27)))))
 
-(defn- digit-sum [n]
+(defn digit-sum [n]
   (reduce + (map num-map (str n))))
 
 (def primes

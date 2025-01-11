@@ -1,11 +1,10 @@
 (defproject projecteuler "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "Solutions to Project Euler problems in Clojure"
+  :url "https://projecteuler.net/"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/math.combinatorics "0.1.1"]
-                 [org.clojure/math.numeric-tower "0.0.4"]]
-  :plugins [[lein-cljfmt "0.6.1"]
-            [lein-kibit "0.1.6"]
-            [lein-pprint "1.2.0"]])
+  :dependencies [[org.clojure/clojure "1.12.0"]
+                 [org.clojure/math.combinatorics "0.3.0"]
+                 [org.clojure/math.numeric-tower "0.0.5"]]
+  :plugins [[lein-kibit "0.1.11"]
+            [lein-pprint "1.3.2"]])
