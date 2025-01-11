@@ -44,7 +44,7 @@
        (first)))
 
 (defn xor-decryption [& [file keylen]]
-  (->> (or file "data/059.txt")
+  (->> (or file "resources/059.txt")
        (slurp)
        (re-seq #"\d+")
        (map #(Integer/parseInt %))

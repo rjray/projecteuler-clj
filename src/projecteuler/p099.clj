@@ -5,7 +5,7 @@
 (defn- pair-to-bigint [base exp]
   (.pow (BigInteger. base) (Integer/parseInt exp)))
 (defn largest-exponential-naive [& [source]]
-  (let [source (or source "data/099.txt")
+  (let [source (or source "resources/099.txt")
         data   (slurp source)
         seq    (re-seq #"(\d+),(\d+)" data)]
     (last (last (sort #(compare (first %1) (first %2))
@@ -13,7 +13,7 @@
                                           (inc %1))
                                    seq))))))
 (defn largest-exponential-naive-parallel [& [source]]
-  (let [source (or source "data/099.txt")
+  (let [source (or source "resources/099.txt")
         data   (slurp source)
         seq    (re-seq #"(\d+),(\d+)" data)]
     (last (last (sort #(compare (first %1) (first %2))
@@ -23,7 +23,7 @@
 (defn- pair-to-expnum [base exp]
   (* (Integer/parseInt exp) (Math/log10 (Integer/parseInt base))))
 (defn largest-exponential [& [source]]
-  (let [source (or source "data/099.txt")
+  (let [source (or source "resources/099.txt")
         data   (slurp source)
         seq    (re-seq #"(\d+),(\d+)" data)]
     (last (last (sort #(compare (first %1) (first %2))

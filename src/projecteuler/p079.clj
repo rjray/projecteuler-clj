@@ -43,7 +43,7 @@
     (flatten (map #(find-solution % graph target-len) universe))))
 
 (defn passcode-derivation [& [file]]
-  (->> (or file "data/079.txt")
+  (->> (or file "resources/079.txt")
        (slurp)
        (re-seq #"\d\d\d")
        (distinct)

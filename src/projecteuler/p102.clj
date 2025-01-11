@@ -32,7 +32,7 @@
        (map vec)))
 
 (defn triangle-containment [& [file]]
-  (let [file  (or file "data/102.txt")
+  (let [file  (or file "resources/102.txt")
         data  (slurp file)]
     (->> (str/split data #"\n")
          (map line-to-vec)

@@ -4,7 +4,7 @@
 ;; https://projecteuler.net/problem=13
 
 (defn large-sum [& [source]]
-  (let [source  (or source "data/013.txt")
+  (let [source  (or source "resources/013.txt")
         numbers (slurp source)]
     (read-string
      (str/join (take 10

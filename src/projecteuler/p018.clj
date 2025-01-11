@@ -16,7 +16,7 @@
 (defn- combine-rows [s1 s2]
   (map + (reduce-row s1) s2))
 (defn maximum-path-sum [& [file]]
-  (let [file (or file "data/018.txt")
+  (let [file (or file "resources/018.txt")
         data (triangle file)
         tree (triangle-tree data)]
     (first (reduce combine-rows tree))))

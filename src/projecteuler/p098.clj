@@ -56,7 +56,7 @@
          :else      (recur (dec n) (concat acc s)))))))
 
 (defn anagramic-squares [& [file]]
-  (let [file (or file "data/098.txt")]
+  (let [file (or file "resources/098.txt")]
     (->> file
          (get-words)
          (get-anagrams)

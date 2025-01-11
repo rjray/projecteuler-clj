@@ -4,7 +4,7 @@
 ;; https://projecteuler.net/problem=42
 
 (defn coded-triangle-numbers [& [file]]
-  (let [file      (or file "data/042.txt")
+  (let [file      (or file "resources/042.txt")
         data      (slurp file)
         words     (re-seq #"\w+" data)
         maxlen    (apply max (map count words))

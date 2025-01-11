@@ -41,7 +41,7 @@
                (str value (roman-element digit i v x)))))))
 
 (defn roman-numerals [& [file]]
-  (->> (or file "data/089.txt")
+  (->> (or file "resources/089.txt")
        (slurp)
        (re-seq #"[MDCLXVI]+")
        (map #(- (count %) (count (roman (arabic %)))))
