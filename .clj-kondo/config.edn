@@ -1,0 +1,3 @@
+{:linters {:clojure-lsp/unused-public-var {:level :warning
+                                           :exclude #{projecteuler.io solve}
+                                           :ignore-test-references? true}}}
